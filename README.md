@@ -68,7 +68,7 @@
 ## Hotfix (Solution)
 
 When we analyze the allocs or heap web tree,
-we can see there is a problem with global http package.
+we can see there is a problem with the http package.
 
 When we check the code,
 there is a part of the code where requesting http get on `GetRemoteFileSize`,
