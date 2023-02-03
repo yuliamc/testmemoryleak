@@ -24,7 +24,7 @@
 
       while true; do 
          curl --request POST localhost:8090/check --data '{"url":"https://freetestdata.com/wp-content/uploads/2021/09/png-5mb-1.png"}'
-      sleep 0.5
+         sleep 0.5
       done
 
 - terminal 3
