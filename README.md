@@ -77,14 +77,15 @@ so by adding this line `defer resp.Body.Close()` after requesting the http
 
    resp, err := http.Get(*url)
    if err != nil {
-         return nil, err
+      return nil, err
    }
    
    // Adds this line to solve memory leak.
    defer resp.Body.Close()
    if resp.StatusCode != http.StatusOK || resp.ContentLength < 0 {
-         return nil, errors.New("REMOTE_FILE_INACESSIBLE")
+      return nil, errors.New("REMOTE_FILE_INACESSIBLE")
    }
+
 
 ## Hotfix Result
 
