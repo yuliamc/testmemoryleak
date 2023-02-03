@@ -80,8 +80,8 @@ so by adding this line `defer resp.Body.Close()` after requesting the http
         return nil, err
     }
 
-    // Adds this line to solve memory leak.
-    defer resp.Body.Close()
+    defer resp.Body.Close() // Adds this line to solve memory leak.
+    
     if resp.StatusCode != http.StatusOK || resp.ContentLength < 0 {
         return nil, errors.New("REMOTE_FILE_INACESSIBLE")
     }
