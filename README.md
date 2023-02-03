@@ -1,9 +1,8 @@
-# testmemoryleak
-## Documentations
-### Init
+# Documentations
+## Init
    go mod tidy
 
-### Single Test
+## Single Test
 - terminal 1
 
       go run main.go
@@ -16,7 +15,7 @@
 
       go tool pprof -http=:8091 localhost:6060/debug/pprof/heap
 
-### Multiple Test
+## Multiple Test
 - terminal 1
 
       go run main.go
@@ -33,10 +32,26 @@
       go tool pprof -http=:8091 localhost:6060/debug/pprof/heap
 
 
-### Result after several minutes profiling
+## Result
 
-#### PPROF
-![Image](profile001.svg)
+### stress test for about ~5 minutes with 0.5 interval
 
 #### Memory
-![Image](memory001.jpg)
+![Image](profile_top.jpg)
+
+#### PPROF
+![Image](profile_allocs.svg)
+![Image](profile_heap.svg)
+![Image](profile_goroutine.svg)
+
+### stress test has been stopped for more than ~10 minutes
+
+![Image](profile_top2.jpg)
+
+#### stress test has been stopped for more than ~20 minutes
+
+![Image](profile_top3.jpg)
+
+#### stress test has been stopped for more than ~40 minutes
+
+![Image](profile_top4.jpg)

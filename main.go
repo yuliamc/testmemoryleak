@@ -16,14 +16,16 @@ import (
 )
 
 func main() {
-	go func() {
-		log.Println(http.ListenAndServe("localhost:6060", nil))
-	}()
+	go startPPROF()
 
 	http.HandleFunc("/check", PostCheckHandler)
 
 	fmt.Println("Server will listen on :8090")
 	http.ListenAndServe(":8090", nil)
+}
+
+func startPPROF() {
+	log.Println(http.ListenAndServe("localhost:6060", nil))
 }
 
 type PostCheckHandlerBody struct {
@@ -56,6 +58,7 @@ func PostCheckHandler(w http.ResponseWriter, req *http.Request) {
 	keyValues := []constant.KeyValue{
 		{Key: "KTP", Value: *reqBody.Url},
 	}
+
 	maxFileSize := int64(3)
 	err = CheckRemoteFileSize(&keyValues, &maxFileSize)
 	if err != nil {
