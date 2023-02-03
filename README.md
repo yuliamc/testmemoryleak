@@ -1,4 +1,7 @@
 # Documentations
+## Description
+This documentation explains how to replicate and solve a memory leak case by monitoring the memory and see the result on golang tool pprof.
+
 ## Init
    go mod tidy
 
