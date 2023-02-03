@@ -32,3 +32,11 @@
 
       go tool pprof -http=:8091 localhost:6060/debug/pprof/heap
 
+
+### Result after several minutes profiling
+
+#### PPROF
+![Image](profile001.svg)
+
+#### Memory
+![Image](memory001.jpg)
