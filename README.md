@@ -89,6 +89,6 @@ so by adding this line `defer resp.Body.Close()` after requesting the http
 
 ## Hotfix Result
 
-### stress test more than 10 minutes
+### stress test for about ~15 minutes with 0.5s interval
 
 ![Image](profile_top5.jpg)
