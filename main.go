@@ -23,10 +23,7 @@ func main() {
 	http.HandleFunc("/check", PostCheckHandler)
 
 	fmt.Println("Server will listen on :8090")
-	err := http.ListenAndServe(":8090", nil)
-	if err == nil {
-		fmt.Println("Server is aborted")
-	}
+	http.ListenAndServe(":8090", nil)
 }
 
 type PostCheckHandlerBody struct {
