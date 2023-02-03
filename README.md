@@ -34,7 +34,7 @@
 
 ## Result
 
-### stress test for about ~5 minutes with 0.5 interval
+### stress test for about ~5 minutes with 0.5s interval
 
 #### Memory
 ![Image](profile_top.jpg)
@@ -75,16 +75,16 @@ there is a part of the code where requesting http get on `GetRemoteFileSize`,
 we miss to close the response body eventhough it never been used,
 so by adding this line `defer resp.Body.Close()` after requesting the http
 
-      resp, err := http.Get(*url)
-      if err != nil {
-            return nil, err
-      }
+    resp, err := http.Get(*url)
+    if err != nil {
+        return nil, err
+    }
 
-      // Adds this line to solve memory leak.
-      defer resp.Body.Close()
-      if resp.StatusCode != http.StatusOK || resp.ContentLength < 0 {
-            return nil, errors.New("REMOTE_FILE_INACESSIBLE")
-      }
+    // Adds this line to solve memory leak.
+    defer resp.Body.Close()
+    if resp.StatusCode != http.StatusOK || resp.ContentLength < 0 {
+        return nil, errors.New("REMOTE_FILE_INACESSIBLE")
+    }
 
 
 ## Hotfix Result
