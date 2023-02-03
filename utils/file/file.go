@@ -7,7 +7,6 @@ import (
 
 func GetRemoteFileSize(url *string) (*int64, error) {
 	resp, err := http.Get(*url)
-
 	if err != nil {
 		return nil, err
 	}

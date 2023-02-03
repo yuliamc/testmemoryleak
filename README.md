@@ -40,18 +40,52 @@
 ![Image](profile_top.jpg)
 
 #### PPROF
+
+##### allocs
+
 ![Image](profile_allocs.svg)
+
+##### heap
+
 ![Image](profile_heap.svg)
+
+##### goroutine
+
 ![Image](profile_goroutine.svg)
 
 ### stress test has been stopped for more than ~10 minutes
 
 ![Image](profile_top2.jpg)
 
-#### stress test has been stopped for more than ~20 minutes
+#### stress test has been stopped for more than ~30 minutes
 
 ![Image](profile_top3.jpg)
 
 #### stress test has been stopped for more than ~40 minutes
 
 ![Image](profile_top4.jpg)
+
+## Hotfix (Solution)
+
+When we analyze the allocs or heap web tree,
+we can see there is a problem with global http package.
+
+When we check the code,
+there is a part of the code where requesting http get on `GetRemoteFileSize`,
+we miss to close the response body eventhough it never been used,
+so by adding this line `defer resp.Body.Close()` after requesting the http
+
+   resp, err := http.Get(*url)
+   if err != nil {
+         return nil, err
+   }
+   
+   // Adds this line to solve memory leak.
+   defer resp.Body.Close()
+   if resp.StatusCode != http.StatusOK || resp.ContentLength < 0 {
+         return nil, errors.New("REMOTE_FILE_INACESSIBLE")
+   }
+
+## Hotfix Result
+
+![Image](profile_top5.jpg)
